@@ -6,7 +6,7 @@ let browserManager, page;
 
 test.beforeEach(async () => {
   browserManager = new BrowserManager();
-  page = await browserManager.getBrowserPage('chrome', ''); // Update 'chrome' as needed
+  page = await browserManager.getBrowserPage('firefox', ''); // Update 'chrome' as needed
 });
 
 test.afterEach(async () => {
