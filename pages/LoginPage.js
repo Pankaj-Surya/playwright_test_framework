@@ -1,23 +1,27 @@
-class LoginPage{
-    constructor(page){
-       this.page = page 
-      // this.page.waitForLoadState();
-       this.username =  page.locator("//input[@id='userEmail']");
-       this.password = page.locator("#userPassword")
-       this.signInButton = page.locator("[value='Login']");
+class LoginPage {
+    constructor(page) {
+        this.page = page
+        // this.page.waitForLoadState();
+        this.username = page.locator("//input[@id='userEmail']");
+        this.password = page.locator("#userPassword")
+        this.signInButton = page.locator("[value='Login']");
         page.waitForLoadState('networkidle');
     }
 
-    async goto(){
-         await this.page.goto("https://rahulshettyacademy.com/client");
+    async goto() {
+        await this.page.goto("https://rahulshettyacademy.com/client");
     }
 
-    async login(us,ps){
-       await this.username.fill(us)
+    async login(us, ps) {
+        if (!us || !ps) {
+            throw new Error('Username or password is missing');
+        }
+
+        await this.username.fill(us)
         await this.password.fill(ps)
         await this.signInButton.click()
         await this.page.waitForLoadState('networkidle');
     }
 }
 
-module.exports = {LoginPage}
+module.exports = { LoginPage }
